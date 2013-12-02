@@ -1,6 +1,6 @@
 <?php
 
-require_once '../vendor/restler.php';
+require_once 'vendor/restler.php';
 use Luracast\Restler\Restler;
 
 $r = new Restler();
