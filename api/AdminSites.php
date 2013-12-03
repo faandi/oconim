@@ -11,12 +11,12 @@ class AdminSites
     }
 
     /**
-     * @param string $project {@from query}
+     * @param string $projectId {@from query}
      *
      * @return array
      */
-    function index($project)
+    function index($projectId)
     {
-        return $this->dp->getAll($project);
+        return $this->dp->getAll($projectId);
     }        
 }

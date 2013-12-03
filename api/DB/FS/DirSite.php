@@ -5,16 +5,17 @@ require_once 'DirBase.php';
 
 class DB_FS_DirSite extends DirBase
 {
-    function getAll($project)
+    function getAll($projectId)
     {
         try {
-            $dir = parent::pathCombine($this->picturePath,$project);
+            $dir = parent::pathCombine($this->picturePath,$projectId);
             $d = dir($dir);
             $dirs = array();        
             while (false !== ($entry = $d->read())) {
                 $path = parent::pathCombine($dir,$entry);
                 if($entry!='.' && $entry!='..' && is_dir($path)) {
-                    $dirs[] = array('name' => $entry, 'id' => $entry);
+                    $id = parent::pathCombine($projectId,$entry);
+                    $dirs[] = array('name' => $entry, 'id' => $id);
                 }
             }
             return $dirs;

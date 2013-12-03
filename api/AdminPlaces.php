@@ -11,13 +11,12 @@ class AdminPlaces
     }
 
     /**
-     * @param string $project {@from query}
-     * @param string $site {@from query}
+     * @param string $siteId {@from query}
      *
      * @return array
      */
-    function index($project, $site)
+    function index($siteId)
     {
-        return $this->dp->getAll($project, $site);
+        return $this->dp->getAll($siteId);
     }       
 }
