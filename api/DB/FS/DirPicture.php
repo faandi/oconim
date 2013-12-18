@@ -12,14 +12,10 @@ class DB_FS_DirPicture extends DirBase
             $d = dir($dir);
             $dirs = array();        
             while (false !== ($entry = $d->read())) {
-                $path = parent::pathCombine($dir,$entry);
-                $ext = '';
-                if (!is_dir($path)) {
-                    $ext = pathinfo($path, PATHINFO_EXTENSION);
-                }
-                if($entry!='.' && $entry!='..' && $ext=='jpeg' || $ext=='jpg') {
+                $path = parent::pathCombine($dir,$entry);                
+                if(self::isValidPicture($path)) {
                     $id = parent::pathCombine($placeId,$entry);
-                    $url = 'api/admin/pictures.json/content/' . urlencode($id);
+                    $url = 'api/admin/pictures/content.json?id=' . urlencode($id);
                     $dirs[] = array('name' => $entry, 'id' => $id, 'url' => $url);
                 }
             }
@@ -29,10 +25,25 @@ class DB_FS_DirPicture extends DirBase
         }
     }
     
+    private function isValidPicture($path) 
+    {
+        $isValid = true;
+        $ext = '';
+        if (!is_dir($path)) {
+            $ext = pathinfo($path, PATHINFO_EXTENSION);
+        }        
+        $isValid = $isValid && $ext=='jpeg' || $ext=='jpg';        
+        $l = strlen('.tn.jpg');
+        if (strlen($path) >= $l) {
+            $isValid = $isValid && substr($path, strlen($path) - $l) != '.tn.jpg';
+        }
+        return $isValid;
+    }
+    
     function getThumbnailPath($id, $maxW, $maxH, $quality=75, $bgColor=NULL) 
     {
         $imgPath = parent::pathCombine($this->picturePath,$id);
-        $tnPath = $imgPath . '.tn' . $maxW . 'x' . $maxH . '.jpg';        
+        $tnPath = $imgPath . '.' . $maxW . 'x' . $maxH . '.tn.jpg';        
         if (!file_exists($tnPath)) {
             $source = imagecreatefromjpeg($imgPath);
             $orig_w=imagesx($source);

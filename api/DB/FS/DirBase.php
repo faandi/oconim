@@ -8,7 +8,7 @@ abstract class DirBase
 
     function __construct()
     {
-        $this->picturePath = "/home/fachi/Projects/oconim/bilder/";
+        $this->picturePath = Config::$picturePath ;
     }
     
     protected function pathCombine($p1,$p2,$p3 = null, $p4 = null)

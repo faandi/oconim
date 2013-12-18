@@ -1,11 +1,29 @@
 
 .details {
-    text-align: center;
+    margin-left:100px;
+    margin-top:100px;
+}
+
+.details-info {
+    /*text-align: center; */
+    clear:both;
 }
 
 .details b {
     margin-left: 1em;
+    float:left;
+    clear:both;
 }
+
+.details span {
+    float:left;
+}
+
+.details img {
+    float:left;
+    margin-left:20px;
+}
+
 
 .appicon {
     background-image: url(../images/work_neptune.png);

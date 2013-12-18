@@ -1,14 +1,14 @@
 /**
- * @class Bim.view.PictureDetails
+ * @class Bim.view.IssueDetails
  * @extends Ext.panel.Panel
  * @author Andreas Fachathaler
  *  
  */
-Ext.define('Bim.view.PictureDetails', {
+Ext.define('Bim.view.IssueDetails', {
     extend: 'Ext.panel.Panel',
-    alias: 'widget.picturedetails',
+    alias: 'widget.issuedetails',
     //id: 'img-detail-panel',
-    title: 'Bild Details',
+    title: 'Angelegenheit Details',
 
     //width: 150,
     //minWidth: 150,
@@ -16,19 +16,23 @@ Ext.define('Bim.view.PictureDetails', {
     tpl: [
         '<div class="details">',
             '<tpl for=".">',
-                '<a href="{fullurl}" target="_blank"><img src="{nurl}" style="height:400px;" /></a>',
                 '<div class="details-info">',
-                    '<b>Name:</b>',
-                    '<span>{name}</span>',                    
-                    '<b>Ort:</b>',
-                    '<span>{sitename}</span>',
-                    '<b><a href="{curl}" target="_blank">Kommentar</a></b>',
-                    '<b><a href="{bpurl}" target="_blank">Plan</a></b>',
+                    '<b>Betreff:</b><span>{subject}</span>',
+                    '<b>Datum:</b><span>{dateCreated}</span>',
+                    '<b>Art und Umfang:</b><span>{artUndUmfang}</span>',
+                    '<b>Verursacher:</b><span>{verursacher}</span>',
+                    '<b>Bemerkungen:</b><span>{bemerkungen}</span>',
+                    '<b>Kennung – Schriftverkehr:</b><span>{kennung}</span>',
+                '</div>',
+                '<div class="details-info">',
+                    '<img src="http://www.bauphilosophie.com/api/admin/pictures/content.json?id=Wien11_MautnerMarkhofgasse_56-60%2FBauteil+2+West%2FEG%2F2013-10-08+10.12.48.jpg&size=100x100&size=100x100" />',
+                    '<img src="http://www.bauphilosophie.com/api/admin/pictures/content.json?id=Wien11_MautnerMarkhofgasse_56-60%2FBauteil+2+West%2FEG%2F2013-10-08+10.12.48.jpg&size=100x100&size=100x100" />',
+                    '<img src="http://www.bauphilosophie.com/api/admin/pictures/content.json?id=Wien11_MautnerMarkhofgasse_56-60%2FBauteil+2+West%2FEG%2F2013-10-08+10.12.48.jpg&size=100x100&size=100x100" />',
                 '</div>',
             '</tpl>',
         '</div>'
     ],
-    
+
     initComponent: function() {            
         //this.html = 'ddd';         
          /*
@@ -39,12 +43,9 @@ Ext.define('Bim.view.PictureDetails', {
         this.callParent();
     },
 
-    /**
-     * Loads a given image record into the panel. Animates the newly-updated panel in from the left over 250ms.
-     */
-    loadRecord: function(picture) {
+    loadRecord: function(issue) {
         this.body.hide();
-        this.tpl.overwrite(this.body, picture);
+        this.tpl.overwrite(this.body, issue);
         this.body.slideIn('l', {
             duration: 250
         });

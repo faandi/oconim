@@ -1,7 +1,7 @@
 
-Ext.define('Bim.model.Picture', {
+Ext.define('Bim.model.Issue', {
     extend: 'Ext.data.Model',
-    fields: ['id', 'name', 'url'],
+    fields: ['id', 'imgurl', 'subject', 'artUndUmfang', 'verursacher', 'bemerkungen', 'kennung', 'dateCreated'],
     idProperty: 'id'
 });
 

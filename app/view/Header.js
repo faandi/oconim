@@ -13,7 +13,7 @@ Ext.define('Bim.view.Header', {
     initComponent: function() {
         this.items = [{
             xtype: 'component',
-            html: 'Baumanager',
+            html: 'bauphilosophie.com',
             flex: 1,
             id: 'bim-header-title'
         },{

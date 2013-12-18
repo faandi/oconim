@@ -27,7 +27,7 @@ Ext.define('Bim.view.PicturesList', {
                 tpl: [
                     '<div class="tn-wrap">',
                         '<div class="tn">',
-                            '<img src="{url}?size=100x100" style="width:100px;height:100px" />',
+                            '<img src="{url}&size=100x100" style="width:100px;height:100px" />',
                         '</div>',
 //                        '<div class="tn-text">',
 //                            '<b>Name: </b><span>{name}</span>',

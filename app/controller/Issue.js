@@ -1,65 +1,57 @@
 
-Ext.define('Bim.controller.Picture', {
+Ext.define('Bim.controller.Issue', {
     extend: 'Ext.app.Controller',
     
     refs: [{
-        ref: 'picturesList',
-        selector: 'pictureslist'
-    },{
-        ref: 'pictureDetails',
-        selector: 'picturedetails'
+        ref: 'issuesList',
+        selector: 'issueslist'
+    },
+    {
+        ref: 'issueDetails',
+        selector: 'issuedetails'
     }],
     
-    stores: ['Pictures'],
+    stores: ['Issues'],
     
     init: function() {
         // Start listening for events on views
         this.control({
-            'pictureslist': {
-                selectionchange: this.onPictureSelect
+            'issueslist': {
+                selectionchange: this.onIssueSelect
             }
         });
-        // Listen for an application wide event
-        this.application.on({
-            siteselect: this.onSiteSelect,
-            scope: this
-        });
-        this.application.on({
-            placeselect: this.onPlaceSelect,
-            scope: this
-        });
+//        // Listen for an application wide event
+//        this.application.on({
+//            placeselect: this.onPlaceSelect,
+//            scope: this
+//        });
     },
     
     onLaunch: function() {
         
     },
     
-    onPictureSelect: function(selModel, selections) {
+    onIssueSelect: function(selModel, selections) {
         var selected = selections[0];
         if (selected) {
             // Fire an application wide event
-            this.application.fireEvent('pictureselect', selected);
-            this.getPictureDetails().loadRecord(selected.data);
+            this.application.fireEvent('issueselect', selected);
+            this.getIssueDetails().loadRecord(selected.data);
         }
-    },
-    
-    onPlaceSelect: function(sender, place) {
-//        var store = this.getPicturesStore();
-//        store.clearFilter();
-//        store.filter('siteid', site.id);        
-        var store = this.getPicturesStore();        
-        store.load({
-            params: { placeId: place.id },
-            callback: this.onPicturesLoad,
-            scope: this
-        });
-        
     }
     
-//    onProjectSelect: function(sender, project) {
-//        var store = this.getPicturesStore();
-//        store.clearFilter();
-//        store.filter('siteid', -1);
+//    onPlaceSelect: function(sender, place) {
+////        var store = this.getPicturesStore();
+////        store.clearFilter();
+////        store.filter('siteid', site.id);      
+//  
+//        var store = this.getIssuesStore();        
+//        store.load({
+//            //params: { placeId: place.id },
+//            callback: this.onIssuesLoad,
+//            scope: this
+//        });
+//        
 //    }
     
 });

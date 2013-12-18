@@ -13,9 +13,9 @@ abstract class MySqlBase
             $options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
             //Update the dbname username and password to suit your server
             $this->db = new PDO(
-                'mysql:host=localhost;dbname=projects',
-                'fachi',
-                'hallo',
+                Config::$dbConnection,
+                Config::$dbUser,
+                Config::$dbPasswd,
                 $options
             );
             $this->db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE,

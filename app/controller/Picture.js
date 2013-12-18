@@ -5,7 +5,8 @@ Ext.define('Bim.controller.Picture', {
     refs: [{
         ref: 'picturesList',
         selector: 'pictureslist'
-    },{
+    },
+    {
         ref: 'pictureDetails',
         selector: 'picturedetails'
     }],
@@ -20,10 +21,6 @@ Ext.define('Bim.controller.Picture', {
             }
         });
         // Listen for an application wide event
-        this.application.on({
-            siteselect: this.onSiteSelect,
-            scope: this
-        });
         this.application.on({
             placeselect: this.onPlaceSelect,
             scope: this
@@ -46,7 +43,8 @@ Ext.define('Bim.controller.Picture', {
     onPlaceSelect: function(sender, place) {
 //        var store = this.getPicturesStore();
 //        store.clearFilter();
-//        store.filter('siteid', site.id);        
+//        store.filter('siteid', site.id);      
+  
         var store = this.getPicturesStore();        
         store.load({
             params: { placeId: place.id },
