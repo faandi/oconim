@@ -13,12 +13,20 @@ Ext.define('Bim.controller.Header', {
     // views: ['Header'],
     
     // generates getters
-    //stores: ['CurrentUser'],
+    stores: ['Companies', 'AdminUsers'],
         
     init: function() {        
         this.control({
            'bimHeader userdisplay button': {
                click: this.onLogOnOffClicked,
+               scope: this
+           },
+           'bimHeader #companies': {
+               click: this.onCompaniesClicked,
+               scope: this
+           },
+           'bimHeader #users': {
+               click: this.onUsersClicked,
                scope: this
            }
         });
@@ -49,6 +57,26 @@ Ext.define('Bim.controller.Header', {
     
     onLogOnOffClicked: function() {
         this.application.logOff();
+    },
+    
+    onCompaniesClicked: function() {
+      var companiesStore = this.getCompaniesStore();
+      companiesStore.load({
+        callback: function(){
+          this.getHeader().openCompaniesWindow(companiesStore);
+        },
+        scope: this
+      });
+    },
+    
+    onUsersClicked: function() {
+      var adminUsersStore = this.getAdminUsersStore();
+      adminUsersStore.load({
+        callback: function(){
+          this.getHeader().openUsersWindow(adminUsersStore);
+        },
+        scope: this
+      });
     }
     
 });
