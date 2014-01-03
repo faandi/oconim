@@ -84,12 +84,21 @@ Ext.define('Bim.controller.PictureViewer', {
         }
     },
     
-    showWindow: function() {      
-      var projectsStore = this.getAdminProjectsStore();
-      projectsStore.load({
-          callback: this.onAdminProjectsLoad,
-          scope: this
-      });
+    showWindow: function(placeId) {
+      if (Ext.isDefined(placeId)) {
+        var store = this.getAdminPicturesStore();        
+        store.load({
+            params: { placeId: placeId },
+            callback: this.onAdminPicturesLoad,
+            scope: this
+        });
+      } else {
+        var projectsStore = this.getAdminProjectsStore();
+        projectsStore.load({
+            callback: this.onAdminProjectsLoad,
+            scope: this
+        });
+      }
       if (!this.win) {
         this.win = Ext.create('Bim.view.PictureViewer', {
           title: 'Bilder',
@@ -97,7 +106,8 @@ Ext.define('Bim.controller.PictureViewer', {
           height: 500,
           plain: true,
           headerPosition: 'top',
-          modal: true
+          modal: true,
+          showNavigator: !Ext.isDefined(placeId)
           //layout: 'fit',
           //modal: true,
           // dont't destroy window onClose

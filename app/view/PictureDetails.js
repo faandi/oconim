@@ -16,7 +16,8 @@ Ext.define('Bim.view.PictureDetails', {
     tpl: [
         '<div class="details">',
             '<tpl for=".">',
-                '<a href="{url}" target="_blank"><img src="{url}&size=400x400" style="height:400px;" /></a>',
+                  '<img src="{url}&size=400x400" style="height:400px;" />',
+//                '<a href="{url}" target="_blank"><img src="{url}&size=400x400" style="height:400px;" /></a>',
 //                '<div class="details-info">',
 //                    '<b>Name:</b>',
 //                    '<span>{name}</span>',                    
@@ -35,7 +36,8 @@ Ext.define('Bim.view.PictureDetails', {
          fbar: [
             { type: 'button', text: 'Button 1' }
           ] 
-         */         
+         */
+        this.addEvents('pictureselected');
         this.callParent();
     },
 
@@ -44,7 +46,10 @@ Ext.define('Bim.view.PictureDetails', {
         this.tpl.overwrite(this.body, picture);
         this.body.slideIn('l', {
             duration: 250
-        });
+        });        
+        this.el.down('img').on('click', function(){
+          this.fireEvent('pictureselected', this, picture);
+        }, this);
     },
     
     clear: function(){
