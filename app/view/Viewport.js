@@ -14,6 +14,7 @@ Ext.define('Bim.view.Viewport', {
     // modal: true,
     border: false,
     bodyBorder: false,
+    id: 'mainviewport',
 
     initComponent: function() {
               

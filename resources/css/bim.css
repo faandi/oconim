@@ -1,7 +1,6 @@
 
 .details {
-    margin-left:100px;
-    margin-top:100px;
+    text-align: center;
 }
 
 .details-info {
@@ -18,12 +17,6 @@
 .details span {
     float:left;
 }
-
-.details img {
-    float:left;
-    margin-left:20px;
-}
-
 
 .appicon {
     background-image: url(../images/work_neptune.png);

@@ -28,6 +28,10 @@ Ext.define('Bim.controller.Header', {
            'bimHeader #users': {
                click: this.onUsersClicked,
                scope: this
+           },
+           'bimHeader #pictures': {
+               click: this.onPicturesClicked,
+               scope: this
            }
         });
     },
@@ -77,6 +81,9 @@ Ext.define('Bim.controller.Header', {
         },
         scope: this
       });
-    }
+    },
     
+    onPicturesClicked: function() {
+      this.application.getController('PictureViewer').showWindow();
+    }    
 });

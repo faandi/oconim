@@ -4,11 +4,11 @@ Ext.define('Bim.controller.Picture', {
     
     refs: [{
         ref: 'picturesList',
-        selector: 'pictureslist'
+        selector: '#mainviewport pictureslist'
     },
     {
         ref: 'pictureDetails',
-        selector: 'picturedetails'
+        selector: '#mainviewport picturedetails'
     }],
     
     stores: ['Pictures'],
@@ -16,7 +16,7 @@ Ext.define('Bim.controller.Picture', {
     init: function() {
         // Start listening for events on views
         this.control({
-            'pictureslist': {
+            '#mainviewport pictureslist': {
                 selectionchange: this.onPictureSelect
             }
         });

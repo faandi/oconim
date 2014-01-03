@@ -25,6 +25,13 @@ Ext.define('Bim.view.Header', {
             id: 'bim-header-title'
         },{
             xtype: 'button',
+            id: 'pictures',
+            text: 'Bilder',
+            listeners: {
+                scope: this
+            }
+        },{
+            xtype: 'button',
             id: 'companies',
             text: 'Firmen',
             listeners: {
