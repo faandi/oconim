@@ -32,6 +32,10 @@ Ext.define('Bim.controller.Header', {
            'bimHeader #pictures': {
                click: this.onPicturesClicked,
                scope: this
+           },
+           'bimHeader #issues': {
+               click: this.onIssuesClicked,
+               scope: this
            }
         });
     },
@@ -85,5 +89,9 @@ Ext.define('Bim.controller.Header', {
     
     onPicturesClicked: function() {
       this.application.getController('PictureViewer').showWindow();
-    }    
+    },
+    
+    onIssuesClicked: function() {
+      this.application.getController('IssueEditor').showWindow();
+    }
 });

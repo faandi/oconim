@@ -73,13 +73,19 @@ CREATE TABLE oconim_user (
 
 CREATE TABLE oconim_issue (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    subject VARCHAR(100) NOT NULL,    
-    touser_id INT NOT NULL,
+    subject VARCHAR(100),
+    created DATETIME NOT NULL,
+    modified DATETIME NOT NULL,
+    touser_id INT,
     INDEX ind_issue_touser_id (touser_id),
     FOREIGN KEY (touser_id) 
         REFERENCES oconim_user(id)
         ON DELETE CASCADE
 ) DEFAULT CHARSET=utf8;
+CREATE TRIGGER oconim_issue_oninsert BEFORE INSERT ON oconim_issue
+    FOR EACH ROW SET NEW.created = IFNULL(NEW.created, NOW());
+CREATE TRIGGER oconim_issue_onupdate BEFORE UPDATE ON oconim_issue
+    FOR EACH ROW SET NEW.modified = IFNULL(NEW.modified, NOW());
 
 CREATE TABLE oconim_issue_pictures (
     issue_id INT NOT NULL,
