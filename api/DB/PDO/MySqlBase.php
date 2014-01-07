@@ -26,13 +26,17 @@ abstract class MySqlBase
         }
     }
 
-    protected function rawGet($query, $queryparams)
+    protected function rawGet($query, $queryparams, $fetchAll = FALSE)
     {
         $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
             $sql = $this->db->prepare($query);
             $sql->execute($queryparams);
-            return $sql->fetch();
+            if ($fetchAll) {
+                return $sql->fetchAll();
+            } else {
+                return $sql->fetch();
+            }
         } catch (PDOException $e) {
             throw new RestException(501, 'MySQL: ' . $e->getMessage());
         }
@@ -56,6 +60,15 @@ abstract class MySqlBase
             return FALSE;
         }
         return $this->get($this->db->lastInsertId());
+    }
+    
+    protected function rawInsertGetId($query, $queryparams)
+    {
+        $sql = $this->db->prepare($query);
+        if (!$sql->execute($queryparams)) {
+            return FALSE;
+        }
+        return $this->db->lastInsertId();
     }
 
     protected function rawUpdate($query, $queryparams)

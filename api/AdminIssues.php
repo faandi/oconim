@@ -32,26 +32,36 @@ class AdminIssues
     /**
      * @status 201
      *
-     * @param string $subject  {@from body}
-     * @param int $touser_id  {@from body}
+     * @param string $subject  {@from body}     
+     * @param string $artUndUmfang  {@from body}
+     * @param string $verursacher  {@from body}
+     * @param string $bemerkungen  {@from body}
+     * @param string $kennung  {@from body}
+     * @param int $touser_id  {@from body} 
      * 
      * @return mixed
      */
-    function post($subject, $touser_id = null)
+    function post($subject, $artUndUmfang, $verursacher, $bemerkungen, $kennung, $touser_id = null)
     {
-        return $this->dp->insert(compact('subject', 'touser_id'));
+        return $this->dp->insert(compact('subject', 'touser_id',
+                'artUndUmfang', 'verursacher', 'bemerkungen', 'kennung'));
     }
 
     /**
      * @param int    $id
-     * @param string $subject  {@from body}
+     * @param string $subject  {@from body}     
+     * @param string $artUndUmfang  {@from body}
+     * @param string $verursacher  {@from body}
+     * @param string $bemerkungen  {@from body}
+     * @param string $kennung  {@from body}
      * @param int $touser_id  {@from body}
      *
      * @return mixed
      */
-    function put($id, $subject, $touser_id)
+    function put($id, $subject, $artUndUmfang, $verursacher, $bemerkungen, $kennung, $touser_id)
     {
-        $r = $this->dp->update($id, compact('subject','touser_id'));
+        $r = $this->dp->update($id, compact('subject', 'touser_id',
+                'artUndUmfang', 'verursacher', 'bemerkungen', 'kennung'));
         if ($r === false) {
             throw new RestException(404);
         }

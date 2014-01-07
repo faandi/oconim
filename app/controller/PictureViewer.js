@@ -29,7 +29,10 @@ Ext.define('Bim.controller.PictureViewer', {
            },
            'pictureviewer pictureslist': {
               selectionchange: this.onPictureSelect
-            }
+            },
+            'pictureviewer picturedetails': {
+              pictureselected: this.onPictureDetailsSelect
+            }            
         });
     },
         
@@ -82,6 +85,10 @@ Ext.define('Bim.controller.PictureViewer', {
             //this.application.fireEvent('pictureselect', selected);
             this.getPictureDetails().loadRecord(selected.data);
         }
+    },
+    
+    onPictureDetailsSelect: function(sender, picture) {
+      this.win.hide();
     },
     
     showWindow: function(placeId) {

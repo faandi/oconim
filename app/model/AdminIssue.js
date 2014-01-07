@@ -1,7 +1,10 @@
 
 Ext.define('Bim.model.AdminIssue', {
     extend: 'Ext.data.Model',
-    fields: ['id', 'subject', 'created', 'modified', 'touser_id'],
+    fields: [
+      'id', 'subject', 'created', 'modified', 'touser_id',
+      'artUndUmfang', 'verursacher', 'bemerkungen', 'kennung'
+    ],
     idProperty: 'id'
 });
 
