@@ -1,7 +1,7 @@
 
 Ext.define('Bim.model.Picture', {
     extend: 'Ext.data.Model',
-    fields: ['id', 'name', 'url'],
+    fields: ['id', 'name', 'url', 'date'],
     idProperty: 'id'
 });
 

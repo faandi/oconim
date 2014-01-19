@@ -16,7 +16,15 @@ class DB_FS_DirPicture extends DirBase
                 if(self::isValidPicture($path)) {
                     $id = parent::pathCombine($placeId,$entry);
                     $url = 'api/admin/pictures/content.json?id=' . urlencode($id);
-                    $dirs[] = array('name' => $entry, 'id' => $id, 'url' => $url);
+                    $exif_data = exif_read_data ($path);
+                    $date = !empty($exif_data['DateTime']) ? 
+                            $exif_data['DateTime'] : NULL;
+                    $dirs[] = array(
+                        'name' => $entry,
+                        'id' => $id,
+                        'url' => $url,
+                        'date' => $date
+                    );
                 }
             }
             return $dirs;
