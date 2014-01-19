@@ -12,7 +12,8 @@ var BimApp;
 //    //stores: ['CurrentUser'],
 //    controllers: ['Picture', 'Navigator', 'Header'],
     
-    controllers: ['Navigator', 'Header', 'Picture', 'Issue', 'PictureViewer', 'IssueEditor'],
+//    controllers: ['Navigator', 'Header', 'Picture', 'Issue', 'PictureViewer', 'IssueEditor'],
+    controllers: ['Navigator', 'Header', 'Issue', 'IssueEditor'],
     
     viewport: null,
     autoCreateViewport: false,
