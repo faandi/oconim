@@ -1,7 +1,7 @@
 
 Ext.define('Bim.controller.IssueEditor', {
     extend: 'Ext.app.Controller',
-    stores: ['AdminIssues', 'AdminUsers', 'AdminIssuePictures'],
+    stores: ['AdminIssues', 'AdminUsers', 'AdminIssueEditPictures'],
     win: null,
     issue: null,
         
@@ -10,6 +10,12 @@ Ext.define('Bim.controller.IssueEditor', {
         '#addPicture': {
           click: function() {
             this.application.getController('PictureViewer').showWindow();
+          },
+          scope: this
+        },
+        '#removePicture': {
+          click: function() {
+            alert('ha');
           },
           scope: this
         },
@@ -30,10 +36,10 @@ Ext.define('Bim.controller.IssueEditor', {
       Ext.Ajax.request({
         url: 'api/admin/issue/pictures.json',
         success: function() {
-          var picturesStore = this.getAdminIssuePicturesStore();      
+          var picturesStore = this.getAdminIssueEditPicturesStore();      
           picturesStore.load({
             params: {issueId: this.issue.getId()},
-            callback: this.onAdminIssuePicturesLoad,
+            callback: this.onAdminIssueEditPicturesLoad,
             scope: this
           });
         },        
@@ -44,7 +50,7 @@ Ext.define('Bim.controller.IssueEditor', {
     
     showWindow: function(issue) {      
       
-      var picturesStore = this.getAdminIssuePicturesStore();
+      var picturesStore = this.getAdminIssueEditPicturesStore();
             
       var issuesStore = this.getAdminIssuesStore(); 
       if (!this.win) {
@@ -65,7 +71,7 @@ Ext.define('Bim.controller.IssueEditor', {
               this.win.setIssue(this.issue);
               picturesStore.load({
                 params: {issueId: issue.getId()},
-                callback: this.onAdminIssuePicturesLoad,
+                callback: this.onAdminIssueEditPicturesLoad,
                 scope: this
               });
             },
@@ -95,7 +101,7 @@ Ext.define('Bim.controller.IssueEditor', {
         this.win.setIssue(issue);
         picturesStore.load({
           params: {issueId: issue.getId()},
-          callback: this.onAdminIssuePicturesLoad,
+          callback: this.onAdminIssueEditPicturesLoad,
           scope: this
         });
       }

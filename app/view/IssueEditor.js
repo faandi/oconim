@@ -150,34 +150,38 @@ Ext.define('Bim.view.IssueEditor', {
         width: 250,
         collapsible: true,
         split: true,
-        store: 'AdminIssuePictures',
         hideHeaders: true,
-        columns: [
-          {
-            xtype: 'templatecolumn',
+        items: [{        
+            xtype: 'dataview',
+            emptyText: 'Keine Bilder',
+            store: 'AdminIssueEditPictures',
+            itemSelector: 'div.tn-wrap',
             tpl: [
-              '<div class="tn-wrap">',
-              '<div class="tn">',
-              '<img src="{url}&size=100x100" style="width:100px;height:100px" />',
-              '</div>',
-              '</div>'
-            ],
-            flex: 1
-          }
-        ],
+                '<tpl for=".">',
+                  '<div class="tn-wrap">',
+                  '<div class="tn">',
+                  '<img src="{url}&size=100x100" style="width:100px;height:100px" />',
+                  '</div>',
+                  '</div>',
+                '</tpl>'
+            ]
+        }],
         buttons: [{
-            id: 'addPicture',
-            text: 'Bild hinzufügen',
-            disabled: false,
-            scope: this
-          }, {
-            text: 'Bild entfernen',
-            disabled: true,
-            handler: function() {
-              alert('HA!!');
-            },
-            scope: this
-          }]
+          id: 'addPicture',
+          text: 'Bild hinzufügen',
+          disabled: false,
+          scope: this
+        }
+//        ,{
+//          id: 'removePicture',
+//          text: 'Bild entfernen',
+////          disabled: true,
+////          handler: function() {
+////            alert('HA!!');
+////          },
+////          scope: this
+//        }
+        ]
       }
     ];
     
