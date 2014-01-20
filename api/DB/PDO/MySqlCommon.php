@@ -12,6 +12,13 @@ class DB_PDO_MySqlCommon extends MySqlBase
         return $picture['path'];
     }
     
+    function getThumbnailPath($id, $maxW, $maxH) 
+    {
+        $imgPath = $this->getPicturePath($id);
+        $tnPath = $imgPath . '.' . $maxW . 'x' . $maxH . '.tn.jpg';
+        return $tnPath;
+    }
+    
     function insertPicture($path)
     {   
         $query = 'SELECT id FROM oconim_picture WHERE path = :path';
