@@ -2,7 +2,7 @@
 Ext.define('Bim.view.IssuesList', {
     extend: 'Ext.grid.Panel',
     alias: 'widget.issueslist',
-    store: 'Issues',
+    store: 'AdminIssues',
     title: 'Angelegenheiten',
     
     initComponent: function() {
@@ -31,7 +31,8 @@ Ext.define('Bim.view.IssuesList', {
                         '</div>',
                         '<div class="tn-text">',
                             '<b>Betreff: </b><span>{subject}</span>',
-                            '<b>Datum: </b><span>{dateCreated}</span>',
+                            '<b>Datum erzeugt: </b><span>{created}</span>',
+                            '<b>Datum geändert: </b><span>{created}</span>',
                         '</div>',
                     '</div>'
                 ],                

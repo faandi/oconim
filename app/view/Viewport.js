@@ -24,11 +24,14 @@ Ext.define('Bim.view.Viewport', {
           type: 'vbox',
           align: 'stretch'
         },
-        items: [{
+        items: [
+          {
             xtype: 'bimHeader'
-          }, {
-            xtype: 'navigator'
-          }]
+          }
+//          ,{
+//            xtype: 'navigator'
+//          }
+        ]
       },
       {
         region: 'center',
