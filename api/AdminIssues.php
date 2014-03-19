@@ -77,6 +77,47 @@ class AdminIssues
     {
         return $this->dp->delete($id);
     }
+    
+    /**
+     * 
+     * @url GET /sendmail
+     * 
+     * @param int $id
+     *
+     * @return bool
+     */
+    function sendMail($id)
+    {
+        $issue = $this->dp->get($id);
         
+        $user_dp = new DB_PDO_MySqlUser();
+        
+        $user = $user_dp->get($issue['touser_id']);
+        
+        $pictures = $this->dp->getPictures($id);
+        
+        // http://www.bauphilosophie.com/api/pictures/content.json?id=1&size=100x100
+        
+        $empfaenger = $user['email'];
+        $betreff = $issue['subject'];
+        $nachricht = "Art und Umfang\r\n" . $issue['artUndUmfang'] . "\r\n\r\n"
+                . "Verursacher\r\n" .  $issue['verursacher'] . "\r\n\r\n"
+                . "Bemerkung\r\n" .  $issue['bemerkungen'] . "\r\n\r\n"
+                . "Kennung\r\n" .  $issue['kennung'] . "\r\n\r\n"
+                . "Bilder\r\n";
+        
+        for($i = 0; $i < count($pictures); $i++) {
+            $picurl = 'http://www.bauphilosophie.com/' . $pictures[$i]['url']
+                     . '&size=full';
+            $nachricht .= $pictures[$i]['name'] . ': ' . $picurl . "\r\n";
+        }
+        
+        $header = "From: webmaster@bauphilosophie.com\r\n"                
+                . "Content-Type: text/plain; charset=\"utf-8\"\r\n";
+                //. "MIME-Version: 1.0\r\n"
+        
+        return mail($empfaenger, $betreff, $nachricht, $header);
+    }
+    
 }
 
