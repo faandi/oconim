@@ -27,10 +27,16 @@ class DB_FS_DirPicture extends DirBase
                     );
                 }
             }
+            usort($dirs, array($this, "cmpPicturesByDate"));
             return $dirs;
         } catch (Exception $e) {
             throw new RestException(500, $e->getMessage());
         }
+    }
+    
+    function cmpPicturesByDate($a, $b)
+    {
+        return strcmp($b['date'], $a['date']);
     }
     
     private function isValidPicture($path) 

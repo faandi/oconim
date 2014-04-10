@@ -6,7 +6,7 @@ class DB_PDO_MySqlIssue extends MySqlBase
 {
     function get($id)
     {
-        $query = 'SELECT id, subject, created, modified, touser_id FROM oconim_issue WHERE id = :id';
+        $query = 'SELECT id, subject, created, modified, touser_id, emailsent FROM oconim_issue WHERE id = :id';
         $queryparams = array(':id' => $id);        
         $issue = parent::rawGet($query, $queryparams);        
         $queryTags = 'SELECT tkey, tval FROM oconim_issue_tags where issue_id = :id';
@@ -20,7 +20,7 @@ class DB_PDO_MySqlIssue extends MySqlBase
 
     function getAll()
     {
-        $query = 'SELECT id, subject, created, modified, touser_id FROM oconim_issue';
+        $query = 'SELECT id, subject, created, modified, touser_id, emailsent FROM oconim_issue ORDER BY created DESC';
         return parent::rawGetAll($query);
     }
 
@@ -107,5 +107,12 @@ class DB_PDO_MySqlIssue extends MySqlBase
         $query = 'DELETE FROM oconim_issue_pictures WHERE issue_id = :issue_id AND picture_id = :picture_id)';
         $queryparams = array(':issue_id' => $issueId, ':picture_id' => $pictureId);        
         return parent::rawDelete($query, $queryparams);
+    }
+    
+    function emailSent($id)
+    {
+        $query = 'UPDATE oconim_issue SET emailsent = :emailsent WHERE id = :id';
+        $queryparams = array(':id' => $id, ':emailsent' => 1);
+        parent::rawUpdate($query, $queryparams);
     }
 }

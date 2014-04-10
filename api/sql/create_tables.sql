@@ -87,6 +87,9 @@ CREATE TRIGGER oconim_issue_oninsert BEFORE INSERT ON oconim_issue
 CREATE TRIGGER oconim_issue_onupdate BEFORE UPDATE ON oconim_issue
     FOR EACH ROW SET NEW.modified = IFNULL(NEW.modified, NOW());
 
+ALTER TABLE oconim_issue ADD COLUMN emailsent INT NOT NULL DEFAULT 0  AFTER touser_id ;
+
+
 CREATE TABLE oconim_issue_pictures (
     issue_id INT NOT NULL,
     picture_id INT NOT NULL,

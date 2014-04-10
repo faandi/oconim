@@ -88,6 +88,32 @@ Ext.define('Bim.view.IssueEditor', {
         fieldLabel: 'Art und Umfang',
         anchor: '100%'
     });
+    this.formAddVerursacher = Ext.create('Ext.form.field.ComboBox', {     
+        name: 'addverursachercombo',
+        fieldLabel: ' ',
+        labelSeparator: '',
+        store: 'Companies',
+        displayField: 'name',
+        valueField: 'id',
+        //tpl: '<tpl for="."><div class="x-boundlist-item" >{name} {surname}</div></tpl>',
+        //typeAhead: true,
+        //queryMode: 'local',
+        triggerAction: 'all',
+        emptyText: 'Verursacher wählen ...',
+        selectOnFocus: true,
+        //indent: true,
+        //forceSelection: true,
+        //labelAlign: 'right',
+        labelWidth: 100,
+        listeners: {
+            select: function(combo, records) {
+                var v = this.formVerursacher.getValue();
+                var newv = v + records[0].get('name') + ';';
+                this.formVerursacher.setValue(newv);
+            },
+            scope: this
+        }
+    });
     this.formVerursacher = Ext.create('Ext.form.field.TextArea', {        
         grow: true,
         name: 'verursacher',
@@ -115,6 +141,7 @@ Ext.define('Bim.view.IssueEditor', {
         },
         items: [
             this.formArtUndUmfang,
+            this.formAddVerursacher,
             this.formVerursacher,
             this.formBemerkungen,
             this.formKennung

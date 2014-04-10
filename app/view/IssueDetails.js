@@ -134,11 +134,11 @@ Ext.define('Bim.view.IssueDetails', {
           general,
           texte
         ]
-//        ,buttons: [{
-//          id: 'editissue',
-//          text: 'Ändern',
-//          disabled: false
-//        }]
+        ,buttons: [{
+          id: 'sendmail',
+          text: 'E-Mail senden',
+          disabled: false
+        }]
       },
       {
         //id: 'pictures',

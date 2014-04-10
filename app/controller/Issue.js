@@ -32,6 +32,10 @@ Ext.define('Bim.controller.Issue', {
            'issueDetails #editissue': {
                click: this.onIssuesClicked,
                scope: this
+           },
+           'issueDetails #sendmail': {
+               click: this.onSendMailClicked,
+               scope: this
            }
         });
     },
@@ -90,7 +94,23 @@ Ext.define('Bim.controller.Issue', {
     
     onIssuesClicked: function() {
       this.application.getController('IssueEditor').showWindow(this.issue);
-    }    
+    },
+    
+    onSendMailClicked: function() {
+      Ext.Ajax.request({
+        url: 'api/admin/issues/sendmail.json?id=' + this.issue.getId(),
+        success: function(response, opts) {
+           if (response) {
+               alert("E-Mail gesendet!");
+           } else {
+               alert("Fehler!");
+           }
+        },
+        failure: function(response, opts) {
+           alert("Fehler!");
+        }
+      });
+    }
     
 //    onPlaceSelect: function(sender, place) {
 //      var store = this.getAdminIssuesStore();        

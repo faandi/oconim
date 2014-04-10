@@ -25,10 +25,10 @@ Ext.define('Bim.view.IssuesList', {
             { 
                 xtype:'templatecolumn',                
                 tpl: [
-                    '<div class="tn-wrap">',
-                        '<div class="tn">',
-                            '<img src="{imgurl}&size=100x100" style="width:100px;height:100px" />',
-                        '</div>',
+                    '<div class="tn-wrap email-status-{emailsent}">',
+//                        '<div class="tn">',
+//                            '<img src="{imgurl}&size=100x100" style="width:100px;height:100px" />',
+//                        '</div>',
                         '<div class="tn-text">',
                             '<b>Betreff: </b><span>{subject}</span>',
                             '<b>Datum erzeugt: </b><span>{created}</span>',

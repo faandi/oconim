@@ -80,3 +80,12 @@
     background: white;
     */
 }
+
+.x-field-label-cell label {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.email-status-1 > div {
+    background-color:#82FA58;
+}

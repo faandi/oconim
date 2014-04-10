@@ -116,6 +116,8 @@ class AdminIssues
                 . "Content-Type: text/plain; charset=\"utf-8\"\r\n";
                 //. "MIME-Version: 1.0\r\n"
         
+        $this->dp->emailSent($id);
+        
         return mail($empfaenger, $betreff, $nachricht, $header);
     }
     
